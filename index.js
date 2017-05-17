@@ -1,6 +1,7 @@
 'use strict';
 
 const http            = require('http');
+const moment          = require('moment');
 const express         = require('express');
 const bodyParser      = require('body-parser');
 const methodOverride  = require('method-override');
@@ -34,6 +35,12 @@ router.get('/', function (req, res) {
   let now = new Date;
   let year = now.getFullYear()
   let holidays = fedHolidays.allForYear(year);
+
+  let formattedHolidays = holidays.map(function (holiday) {
+    holiday.dateString = moment(holiday.dateString, 'YYYY-M-D').format('YYYY-MM-DD');
+    return holiday;
+  });
+
   res.status(200).json({data: holidays});
 });
 
