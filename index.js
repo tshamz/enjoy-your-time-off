@@ -34,7 +34,7 @@ router.get('/', function (res, req) {
   let now = new Date;
   let year = now.getFullYear()
   let holidays = fedHolidays.allForYear(year);
-  res.status(200).json({data: holidays});
+  res.json({data: holidays});
 });
 
 app.use(function(req, res, next){  // if route not found, respond with 404
