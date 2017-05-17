@@ -41,7 +41,7 @@ router.get('/', function (req, res) {
     return holiday;
   });
 
-  res.status(200).json({data: holidays});
+  res.status(200).json({data: formattedHolidays});
 });
 
 app.use(function(req, res, next){  // if route not found, respond with 404
