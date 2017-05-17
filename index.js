@@ -30,11 +30,11 @@ router.all('*', function(req, res, next){
 });
 
 // API routes
-router.get('/', function (res, req) {
+router.get('/', function (req, res) {
   let now = new Date;
   let year = now.getFullYear()
   let holidays = fedHolidays.allForYear(year);
-  res.json({data: holidays});
+  res.status(200).json({data: holidays});
 });
 
 app.use(function(req, res, next){  // if route not found, respond with 404
