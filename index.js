@@ -7,6 +7,7 @@ const methodOverride  = require('method-override');
 const fedHolidays     = require('@18f/us-federal-holidays');
 
 const app = express();
+const router = express.Router();
 
 app.set('port', process.env.PORT || 5000);
 
