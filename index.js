@@ -4,7 +4,7 @@ const http            = require('http');
 const express         = require('express');
 const bodyParser      = require('body-parser');
 const methodOverride  = require('method-override');
-const fedHolidays     = require('us-federal-holidays');
+const fedHolidays     = require('@18f/us-federal-holidays');
 
 const app = express();
 
