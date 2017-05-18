@@ -49,6 +49,12 @@ router.get('/', function (req, res) {
   res.status(200).json({data: formattedHolidays});
 });
 
+router.get('/year/:year', function (req, res) {
+  console.log(req.params);
+  // let year = req.params.year;
+  res.sendstatus(200);
+});
+
 app.use(function(req, res, next){  // if route not found, respond with 404
   const jsonData = {
     status: 'ERROR',
