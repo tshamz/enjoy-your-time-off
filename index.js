@@ -35,7 +35,7 @@ router.get('/', function (req, res) {
   let now = new Date;
   let year = now.getFullYear();
 
-  if (Object.keys(req.query).length !== 0 && req.query.hadOwnProperty('year')) {
+  if (Object.keys(req.query).length !== 0 && req.query.hasOwnProperty('year')) {
     year = req.query.year;
   }
 
