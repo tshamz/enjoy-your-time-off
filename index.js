@@ -30,6 +30,13 @@ router.all('*', function(req, res, next){
   next();
 });
 
+const properlyFormatDates = function (holidays) {  // takes array of objects from fedHolidays
+  return holidays.map(function (holiday) {
+    holiday.dateString = moment(holiday.dateString, 'YYYY-M-D').format('YYYY-MM-DD');
+    return holiday;
+  });
+};
+
 // API routes
 router.get('/', function (req, res) {
   let now = new Date;
@@ -41,12 +48,14 @@ router.get('/', function (req, res) {
 
   let holidays = fedHolidays.allForYear(year);
 
-  let formattedHolidays = holidays.map(function (holiday) {
-    holiday.dateString = moment(holiday.dateString, 'YYYY-M-D').format('YYYY-MM-DD');
-    return holiday;
-  });
+  res.status(200).json({data: properlyFormatDates(holidays)});
+});
 
-  res.status(200).json({data: formattedHolidays});
+router.get('/year/:year', function (req, res) {
+  let year = req.params.year;
+  let holidays = fedHolidays.allForYear(year);
+  
+  res.status(200).json({data: properlyFormatDates(holidays)});
 });
 
 app.use(function(req, res, next){  // if route not found, respond with 404
