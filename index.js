@@ -33,7 +33,12 @@ router.all('*', function(req, res, next){
 // API routes
 router.get('/', function (req, res) {
   let now = new Date;
-  let year = now.getFullYear()
+  let year = now.getFullYear();
+
+  if (Object.keys(req.query).length !== 0 && req.query.hadOwnProperty('year')) {
+    year = req.query.year;
+  }
+
   let holidays = fedHolidays.allForYear(year);
 
   let formattedHolidays = holidays.map(function (holiday) {
